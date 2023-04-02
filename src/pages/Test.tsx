@@ -9,15 +9,21 @@ import "./Test.css";
 
 // import required modules
 import { Mousewheel, Pagination } from "swiper";
+import ASwiperLastSection from "../components/ASwiperLastSection";
 
 export default function Test() {
+  window.addEventListener("scroll", function () {
+    console.log(window.scrollY);
+  });
+
   return (
     <>
       <Swiper
         direction={"vertical"}
         slidesPerView={1}
         spaceBetween={30}
-        mousewheel
+        speed={1000}
+        mousewheel={{ releaseOnEdges: false }}
         pagination={{
           clickable: true,
         }}
@@ -26,7 +32,11 @@ export default function Test() {
       >
         <SwiperSlide>Slide 1</SwiperSlide>
         <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>
+          <ASwiperLastSection
+            children={<div>Slide 3</div>}
+          ></ASwiperLastSection>
+        </SwiperSlide>
       </Swiper>
     </>
   );
